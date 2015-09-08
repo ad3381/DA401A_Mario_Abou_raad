@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:id="@+id/fragment_quote"
+    android:background="#ff8738">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/text_quote"
+        android:text="@string/quote_of_day"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.05"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="198dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/text_quote_of_the_day"
+        android:id="@+id/textView2"
+        android:layout_marginBottom="103dp"
+        android:layout_above="@+id/text_quote"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

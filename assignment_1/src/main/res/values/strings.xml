@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Quote App</string>
+
+    <string name="get_quote">Press to get the quote of the day</string>
+    <string name="quote_of_day">Quote of the day!</string>
+    <string name="button_quote">press</string>
+    <string name="text_quote_of_the_day">"The Quote of the day!"</string>
+    <string name="action_settings">Settings</string>
+
+
+</resources>
