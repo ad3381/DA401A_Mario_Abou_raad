@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Themes for Android API21 -->
+
+
+    <style name="AppTheme21.Base" parent="android:Theme.Material">
+
+        <item name="colorPrimary">@android:color/darker_gray</item>
+        <item name="colorPrimaryDark">@android:color/background_dark</item>
+        <item name="android:colorAccent">@android:color/white</item>
+
+    </style>
+
+</resources>
