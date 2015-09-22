@@ -5,8 +5,9 @@
 
     <ImageView
         android:id="@+id/poster_movie_view"
-        android:layout_width="wrap_content"
-        android:layout_height="270dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
         android:scaleType="fitXY" />
 
     <LinearLayout
@@ -17,19 +18,19 @@
 
         <TextView
             android:id="@+id/movie_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
-            android:textSize="16dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/movie_year"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
+            android:padding="16dp"
             android:paddingTop="8dp"
-            android:textSize="16dp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 

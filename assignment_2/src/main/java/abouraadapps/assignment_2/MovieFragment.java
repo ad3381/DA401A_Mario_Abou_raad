@@ -36,6 +36,7 @@ public class MovieFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        MovieListFragment ml = new MovieListFragment();
 
         View v = inflater.inflate(R.layout.fragment_movie, container, false);
 
@@ -44,10 +45,10 @@ public class MovieFragment extends Fragment {
         TextView titleView = (TextView) v.findViewById(R.id.title_imageView);
         ImageView imageView = (ImageView) v.findViewById(R.id.fanart_imageView);
 
-        summary.setText(MovieListFragment.movieList.get(getIndexPosition()).getSummary());
-        imageView.setImageDrawable(MovieListFragment.movieList.get(getIndexPosition()).getFanart());
-        titleView.setText(MovieListFragment.movieList.get(getIndexPosition()).getTitle());
-        yearView.setText(MovieListFragment.movieList.get(getIndexPosition()).getYear());
+        summary.setText(ml.movieList.get(getIndexPosition()).getSummary());
+        imageView.setImageDrawable(ml.movieList.get(getIndexPosition()).getFanart());
+        titleView.setText(ml.movieList.get(getIndexPosition()).getTitle());
+        yearView.setText(ml.movieList.get(getIndexPosition()).getYear());
 
 
         return v;

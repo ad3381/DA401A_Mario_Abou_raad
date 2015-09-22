@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class MovieListFragment extends Fragment implements FragmentManager.OnBackStackChangedListener {
 
-    public static List<Movie> movieList = new ArrayList<>();
+    List<Movie> movieList;
 
     public MovieListFragment() {
-
+        movieList = new ArrayList<>();
     }
 
     @Override

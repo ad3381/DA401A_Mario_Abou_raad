@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class MovieAdapter extends BaseAdapter {
 
-    private List<Movie> movieList;
-    private LayoutInflater layoutInflater;
+    List<Movie> movieList;
+    LayoutInflater layoutInflater;
 
     public MovieAdapter(List<Movie> movieList, LayoutInflater layoutInflater) {
         this.movieList = movieList;

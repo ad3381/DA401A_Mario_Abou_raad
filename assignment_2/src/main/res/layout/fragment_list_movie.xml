@@ -10,12 +10,12 @@
         android:id="@+id/movie_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="147dp"
         android:gravity="center"
-        android:horizontalSpacing="7dp"
+        android:horizontalSpacing="4dp"
         android:numColumns="auto_fit"
+        android:padding="4dp"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="7dp" />
+        android:verticalSpacing="4dp" />
 
 
 </FrameLayout>

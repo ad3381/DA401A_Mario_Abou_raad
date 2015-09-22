@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Treasue Hunt</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="d_alt_one">Internet of Things</string>
+    <string name="d_alt_two">Ekonomi</string>
+    <string name="d_alt_three">Historia</string>
+
+    <string name="c_alt_one">5</string>
+    <string name="c_alt_two">2</string>
+    <string name="c_alt_three">3</string>
+
+    <string name="b_alt_one">Vörnhem</string>
+    <string name="b_alt_two">Arlöv</string>
+    <string name="b_alt_three">Möllevången</string>
+
+    <string name="a_alt_one">Fotboll</string>
+    <string name="a_alt_two">Boxning</string>
+    <string name="a_alt_three">Tennis</string>
+
+    <string name="question_a"> Vilken sport tränas i denna byggnad?</string>
+    <string name="question_b">Vad heter området du bor på?</string>
+    <string name="question_c">Vilken våning ligger biblioteket på?</string>
+    <string name="question_d">Vilken av följande forskningsområden bedrivs i denna byggnad?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
