@@ -34,7 +34,7 @@ public class MovieListFragment extends Fragment implements FragmentManager.OnBac
         for (int i = 0; i < movies.length(); i++) {
             TypedArray movieArray = getResources().obtainTypedArray(movies.getResourceId(i, 0));
 
-            Movie movie = new Movie(movieArray.getString(0), movieArray.getString(1), movieArray.getString(2), movieArray.getDrawable(3), movieArray.getDrawable(4));
+            Movie movie = new Movie(movieArray.getString(0), movieArray.getString(1), movieArray.getString(2), movieArray.getResourceId(3, 0), movieArray.getResourceId(4, 0));
 
             movieList.add(movie);
             movieArray.recycle();
@@ -66,10 +66,14 @@ public class MovieListFragment extends Fragment implements FragmentManager.OnBac
 
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            MovieFragment movieFragment;
+            Bundle args = new Bundle();
+            args.putString("Title", movieList.get(position).getTitle());
+            args.putString("Year", movieList.get(position).getYear());
+            args.putInt("Fanart", movieList.get(position).getFanart());
+            args.putString("Summary", movieList.get(position).getSummary());
 
-            // Create a new MovieFragment with a bundle that holds which poster that was pressed
-            movieFragment = MovieFragment.newInstance(position);
+            MovieFragment movieFragment = new MovieFragment();
+            movieFragment.setArguments(args);
 
             // Create a FragmentTransaction
             FragmentTransaction transaction = getFragmentManager().beginTransaction();

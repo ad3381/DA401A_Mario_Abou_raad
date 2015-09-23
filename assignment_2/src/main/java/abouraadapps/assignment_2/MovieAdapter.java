@@ -49,7 +49,7 @@ public class MovieAdapter extends BaseAdapter {
         TextView titleTextView = (TextView) convertView.findViewById(R.id.movie_title);
         TextView yearTextView = (TextView) convertView.findViewById(R.id.movie_year);
 
-        image.setImageDrawable(((Movie) getItem(position)).getPoster());
+        image.setImageResource(((Movie) getItem(position)).getPoster());
         titleTextView.setText(((Movie) getItem(position)).getTitle());
         yearTextView.setText(((Movie) getItem(position)).getYear());
 

@@ -28,6 +28,7 @@ public class QuoteFragment extends Fragment implements View.OnClickListener {
     ArrayList<String> quotes = new ArrayList<>();
     QuoteAdapter quoteAdapter;
     ProgressBar progressbar;
+    ListView listview;
 
     public QuoteFragment() {
         // Required empty public constructor
@@ -43,7 +44,7 @@ public class QuoteFragment extends Fragment implements View.OnClickListener {
 
         progressbar = (ProgressBar) v.findViewById(R.id.progress_bar);
 
-        ListView listview = (ListView) v.findViewById(R.id.quote_list);
+        listview = (ListView) v.findViewById(R.id.quote_list);
         quoteAdapter = new QuoteAdapter(quotes, getActivity().getLayoutInflater());
         listview.setAdapter(quoteAdapter);
 
@@ -109,6 +110,7 @@ public class QuoteFragment extends Fragment implements View.OnClickListener {
             progressbar.setVisibility(View.GONE);
             quotes.add(quote);
             quoteAdapter.notifyDataSetChanged();
+            listview.smoothScrollToPosition(quotes.size() - 1);
         }
 
     }

@@ -3,6 +3,7 @@ package abouraadapps.assignment_4;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -46,6 +48,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     @Override
     protected void onResume() {
         super.onResume();
+
         setUpMapIfNeeded();
     }
 
@@ -88,20 +91,27 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         mMap.addMarker(new MarkerOptions()
                 .position(home)
-                .title("Home"));
+                .title("Question A")
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(niagara)
-                .title("Niagara"));
+                .title("Question B")
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(training)
-                .title("Training"));
+                .title("Question C")
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
 
         mMap.addMarker(new MarkerOptions()
                 .position(orkanen)
-                .title("Orkanen")
-                .snippet("This is where i study"));
+                .title("Question D")
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
 
         mMap.setOnMarkerClickListener(this);
 
@@ -120,17 +130,40 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         Location myLocation = mMap.getMyLocation();
 
 
+
     }
+
 
     @Override
     public boolean onMarkerClick(Marker marker) {
 
-        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        MarkerClickDialog mDialog = new MarkerClickDialog();
-        mDialog.show(ft, "dialog");
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        switch (marker.getTitle()) {
 
+            case "QuestionA":
+                Log.i(TAG, "onMarkerClick QA");
+                Dialog_A mDialogA = new Dialog_A();
+                mDialogA.show(ft, "A");
+            case "Question2":
+                Log.i(TAG, "Question2");
+                Dialog_B mDialogB = new Dialog_B();
+                mDialogB.show(ft, "B");
+                break;
+            case "Question3":
+                Log.i(TAG, "Question3");
+                Dialog_C mDialogC = new Dialog_C();
+                mDialogC.show(ft, "C");
+                break;
+            case "QuestionD":
+                Log.i(TAG, "Question4");
+                Dialog_D mDialogD = new Dialog_D();
+                mDialogD.show(ft, "D");
+                break;
+        }
         return true;
+
     }
+
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -139,6 +172,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(5000);
+        locationRequest.setSmallestDisplacement(10);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
 

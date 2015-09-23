@@ -1,7 +1,5 @@
 package abouraadapps.assignment_2;
 
-import android.graphics.drawable.Drawable;
-
 /**
  * Created by marioabouraad on 15-09-08.
  */
@@ -10,11 +8,11 @@ public class Movie {
     private String title;
     private String year;
     private String summary;
-    private Drawable fanart;
-    private Drawable poster;
+    private int fanart;
+    private int poster;
 
 
-    public Movie(String title, String year, String summary, Drawable fanart, Drawable poster) {
+    public Movie(String title, String year, String summary, int fanart, int poster) {
         this.title = title;
         this.year = year;
         this.summary = summary;
@@ -47,19 +45,19 @@ public class Movie {
     }
 
 
-    public Drawable getFanart() {
+    public int getFanart() {
         return fanart;
     }
 
-    public void setFanart(Drawable fanart) {
+    public void setFanart(int fanart) {
         this.fanart = fanart;
     }
 
-    public Drawable getPoster() {
+    public int getPoster() {
         return poster;
     }
 
-    public void setPoster(Drawable poster) {
+    public void setPoster(int poster) {
         this.poster = poster;
     }
 

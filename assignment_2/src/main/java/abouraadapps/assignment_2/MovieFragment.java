@@ -19,20 +19,6 @@ public class MovieFragment extends Fragment {
     }
 
 
-    public static MovieFragment newInstance(int index) {
-        MovieFragment movieFragmentInstance = new MovieFragment();
-
-        Bundle args = new Bundle();
-        args.putInt("index", index);
-        movieFragmentInstance.setArguments(args);
-
-        return movieFragmentInstance;
-    }
-
-    public int getIndexPosition() {
-        return getArguments().getInt("index", 0);
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,10 +31,14 @@ public class MovieFragment extends Fragment {
         TextView titleView = (TextView) v.findViewById(R.id.title_imageView);
         ImageView imageView = (ImageView) v.findViewById(R.id.fanart_imageView);
 
-        summary.setText(ml.movieList.get(getIndexPosition()).getSummary());
-        imageView.setImageDrawable(ml.movieList.get(getIndexPosition()).getFanart());
-        titleView.setText(ml.movieList.get(getIndexPosition()).getTitle());
-        yearView.setText(ml.movieList.get(getIndexPosition()).getYear());
+        Bundle args = getArguments();
+
+
+        summary.setText(args.getString("Summary"));
+        imageView.setImageResource(args.getInt("Fanart"));
+        titleView.setText(args.getString("Title"));
+        yearView.setText(args.getString("Year"));
+
 
 
         return v;

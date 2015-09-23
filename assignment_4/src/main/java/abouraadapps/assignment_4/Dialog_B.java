@@ -1,7 +1,6 @@
 package abouraadapps.assignment_4;
 
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
@@ -15,24 +14,13 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MarkerClickDialog extends DialogFragment implements Dialog.OnClickListener {
+public class Dialog_B extends DialogFragment implements Dialog.OnClickListener {
 
 
-    public MarkerClickDialog() {
+    public Dialog_B() {
         // Required empty public constructor
     }
 
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
-                .setTitle("Your school")
-                .setMessage("orkanen")
-                .setPositiveButton("OK", this)
-                .setNegativeButton("Cancel", this);
-
-        return dialog.create();
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,13 +30,9 @@ public class MarkerClickDialog extends DialogFragment implements Dialog.OnClickL
         return textView;
     }
 
+
+    @Override
     public void onClick(DialogInterface dialog, int which) {
-        switch (which) {
-            case Dialog.BUTTON_POSITIVE:
-                break;
 
-        }
     }
-
-
 }
