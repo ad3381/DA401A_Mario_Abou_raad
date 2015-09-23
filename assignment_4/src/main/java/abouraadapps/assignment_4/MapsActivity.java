@@ -141,21 +141,21 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         switch (marker.getTitle()) {
 
             case "QuestionA":
-                Log.i(TAG, "onMarkerClick QA");
+                Log.i(TAG, "QuestionA");
                 Dialog_A mDialogA = new Dialog_A();
                 mDialogA.show(ft, "A");
-            case "Question2":
-                Log.i(TAG, "Question2");
+            case "QuestionB":
+                Log.i(TAG, "QuestionB");
                 Dialog_B mDialogB = new Dialog_B();
                 mDialogB.show(ft, "B");
                 break;
-            case "Question3":
-                Log.i(TAG, "Question3");
+            case "QuestionC":
+                Log.i(TAG, "QuestionC");
                 Dialog_C mDialogC = new Dialog_C();
                 mDialogC.show(ft, "C");
                 break;
             case "QuestionD":
-                Log.i(TAG, "Question4");
+                Log.i(TAG, "QuestionD");
                 Dialog_D mDialogD = new Dialog_D();
                 mDialogD.show(ft, "D");
                 break;
