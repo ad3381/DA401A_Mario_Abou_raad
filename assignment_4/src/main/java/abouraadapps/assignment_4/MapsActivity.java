@@ -25,6 +25,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     static final LatLng niagara = new LatLng(55.609140, 12.992469);
     static final LatLng training = new LatLng(55.611346, 13.006793);
     static final String TAG = "MapsActivity";
+    Marker homeMarker, niagaraMarker, trainingMarker, orkanenMarker;
     private GoogleApiClient googleApiClient;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
@@ -89,32 +90,31 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     private void setUpMap() {
 
 
-        mMap.addMarker(new MarkerOptions()
+        mMap.setOnMarkerClickListener(this);
+        homeMarker = mMap.addMarker(new MarkerOptions()
                 .position(home)
-                .title("Question A")
+                .title("QuestionA")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
-        mMap.addMarker(new MarkerOptions()
+        niagaraMarker = mMap.addMarker(new MarkerOptions()
                 .position(niagara)
-                .title("Question B")
+                .title("QuestionB")
+                .snippet("Question B")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
-        mMap.addMarker(new MarkerOptions()
+        trainingMarker = mMap.addMarker(new MarkerOptions()
                 .position(training)
-                .title("Question C")
+                .title("QuestionC")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
 
-        mMap.addMarker(new MarkerOptions()
+        orkanenMarker = mMap.addMarker(new MarkerOptions()
                 .position(orkanen)
-                .title("Question D")
+                .title("QuestionD")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
-
-        mMap.setOnMarkerClickListener(this);
-
 
         mMap.setMyLocationEnabled(true);
 
@@ -134,36 +134,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     }
 
 
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        switch (marker.getTitle()) {
-
-            case "QuestionA":
-                Log.i(TAG, "QuestionA");
-                Dialog_A mDialogA = new Dialog_A();
-                mDialogA.show(ft, "A");
-            case "QuestionB":
-                Log.i(TAG, "QuestionB");
-                Dialog_B mDialogB = new Dialog_B();
-                mDialogB.show(ft, "B");
-                break;
-            case "QuestionC":
-                Log.i(TAG, "QuestionC");
-                Dialog_C mDialogC = new Dialog_C();
-                mDialogC.show(ft, "C");
-                break;
-            case "QuestionD":
-                Log.i(TAG, "QuestionD");
-                Dialog_D mDialogD = new Dialog_D();
-                mDialogD.show(ft, "D");
-                break;
-        }
-        return true;
-
-    }
-
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -174,8 +144,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         locationRequest.setFastestInterval(5000);
         locationRequest.setSmallestDisplacement(10);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
     }
 
@@ -187,9 +155,37 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     @Override
     public void onLocationChanged(Location location) {
         Log.i(TAG, "onLocationChanged " + location.getLongitude() + location.getLatitude() + "time" + location.getTime());
+
     }
 
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        if (marker.equals(homeMarker)) {
+            Log.i(TAG, "QuestionA");
+            Dialog_A mDialogA = new Dialog_A();
+            mDialogA.show(ft, "A");
+        }
+        if (marker.equals(niagaraMarker)) {
+            Log.i(TAG, "QuestionB");
+            Dialog_B mDialogB = new Dialog_B();
+            mDialogB.show(ft, "B");
+        }
+
+        if (marker.equals(trainingMarker)) {
+            Log.i(TAG, "QuestionC");
+            Dialog_C mDialogC = new Dialog_C();
+            mDialogC.show(ft, "C");
+        }
+        if (marker.equals(orkanenMarker)) {
+            Log.i(TAG, "QuestionD");
+            Dialog_D mDialogD = new Dialog_D();
+            mDialogD.show(ft, "D");
+        }
+        return true;
+    }
 }
 
 
