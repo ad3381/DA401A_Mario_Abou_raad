@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">assignment_5</string>
+
+
+    <string name="hello_world">Hello world!</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+</resources>
