@@ -18,16 +18,22 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks, com.google.android.gms.location.LocationListener {
 
+
     static final LatLng orkanen = new LatLng(55.610959, 12.995037);
-    static final LatLng home = new LatLng(55.604781, 13.029140);
+    static final LatLng home = new LatLng(55.604644, 13.029156);
     static final LatLng niagara = new LatLng(55.609140, 12.992469);
     static final LatLng training = new LatLng(55.611346, 13.006793);
     static final String TAG = "MapsActivity";
+    ArrayList<LatLng> position = new ArrayList<>();
+    ArrayList<Marker> markers = new ArrayList<>();
     Marker homeMarker, niagaraMarker, trainingMarker, orkanenMarker;
     private GoogleApiClient googleApiClient;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,30 +95,30 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
      */
     private void setUpMap() {
 
-
-        mMap.setOnMarkerClickListener(this);
         homeMarker = mMap.addMarker(new MarkerOptions()
                 .position(home)
-                .title("QuestionA")
+                .title("Question1")
+                .snippet("")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-
         niagaraMarker = mMap.addMarker(new MarkerOptions()
                 .position(niagara)
-                .title("QuestionB")
-                .snippet("Question B")
+                .title("Question2")
+                .snippet("")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         trainingMarker = mMap.addMarker(new MarkerOptions()
                 .position(training)
-                .title("QuestionC")
+                .title("Question3")
+                .snippet("")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
 
         orkanenMarker = mMap.addMarker(new MarkerOptions()
                 .position(orkanen)
-                .title("QuestionD")
+                .title("Question4")
+                .snippet("")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
 
@@ -127,9 +133,17 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         mMap.moveCamera(CameraUpdateFactory.newLatLng(orkanen));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(16));
 
-        Location myLocation = mMap.getMyLocation();
+        mMap.getMyLocation();
 
+        position.add(home);
+        position.add(niagara);
+        position.add(training);
+        position.add(orkanen);
 
+        markers.add(homeMarker);
+        markers.add(niagaraMarker);
+        markers.add(trainingMarker);
+        markers.add(orkanenMarker);
 
     }
 
@@ -156,11 +170,32 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     public void onLocationChanged(Location location) {
         Log.i(TAG, "onLocationChanged " + location.getLongitude() + location.getLatitude() + "time" + location.getTime());
 
+        Location currentLocation = new Location("");
+
+        for (int i = 0; i < markers.size(); i++) {
+
+            currentLocation.setLatitude(position.get(i).latitude);
+            currentLocation.setLongitude(position.get(i).longitude);
+            float currentDistance = location.distanceTo(currentLocation);
+
+            if (currentDistance < 100) {
+                markers.get(i).setTitle("Question" + i + 1);
+                markers.get(i).setSnippet("Press to see question");
+                mMap.setOnMarkerClickListener(this);
+                markers.get(i).showInfoWindow();
+            } else {
+                markers.get(i).hideInfoWindow();
+            }
+
+        }
+
+
     }
 
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
         if (marker.equals(homeMarker)) {
@@ -184,6 +219,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
             Dialog_D mDialogD = new Dialog_D();
             mDialogD.show(ft, "D");
         }
+
         return true;
     }
 }
